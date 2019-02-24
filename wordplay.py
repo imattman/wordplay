@@ -12,9 +12,9 @@ SCRABBLE_VALUES = {
 }
 
 letter_value = {}
-for (value, chars) in SCRABBLE_VALUES.items():
-    for c in chars:
-        letter_value[c] = value
+for (value, letters) in SCRABBLE_VALUES.items():
+    for letter in letters:
+        letter_value[letter] = value
 
 
 def score_word(word):
