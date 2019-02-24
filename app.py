@@ -25,6 +25,7 @@ def dummy_data():
 @app.route("/api/v1/score")
 def score_word():
     letters = request.args.get('l')
+    letters = letters.lower()
     score = wordplay.score_word(letters)
     result = {'letters': sorted(list(letters)),
               'score': score}

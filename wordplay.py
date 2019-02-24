@@ -19,6 +19,6 @@ for (value, letters) in SCRABBLE_VALUES.items():
 
 def score_word(word):
     score = 0
-    for char in word:
-        score += letter_value.get(char, 0)
+    for letter in word:
+        score += letter_value.get(letter, 0)
     return score
