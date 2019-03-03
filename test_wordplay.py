@@ -1,5 +1,5 @@
 import pytest
-from wordplay import score_word
+import wordplay
 
 
 @pytest.mark.parametrize("word, score", [
@@ -14,4 +14,4 @@ from wordplay import score_word
     ('l33t-sp34k', 11),
 ])
 def test_score_word(word, score):
-    assert score_word(word) == score
+    assert wordplay.score_word(word) == score

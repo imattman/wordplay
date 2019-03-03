@@ -22,3 +22,20 @@ def score_word(word):
     for letter in word:
         score += letter_value.get(letter, 0)
     return score
+
+
+def load_lexicon_file(filepath):
+    with open(filepath) as fileobj:
+        return read_words(fileobj)
+
+
+def read_words(fileobj):
+    # this felt a little too involved for a single comprehension
+    words = []
+    for line in fileobj:
+        line = line.strip()
+        if not line or line[0] == '#':
+            continue
+        words.append(line.lower())
+
+    return words
