@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
 
 SCRABBLE_VALUES = {
-    0:  " -",
-    1:  "aeilnorstu",
-    2:  "dg",
-    3:  "bcmp",
-    4:  "fhvwy",
-    5:  "k",
-    8:  "jx",
+    0: " -",
+    1: "aeilnorstu",
+    2: "dg",
+    3: "bcmp",
+    4: "fhvwy",
+    5: "k",
+    8: "jx",
     10: "qz",
 }
 
-letter_value = {}
-for (value, letters) in SCRABBLE_VALUES.items():
-    for letter in letters:
-        letter_value[letter] = value
+letter_value = {
+    letter: value
+    for (value, letters) in SCRABBLE_VALUES.items()
+    for letter in letters
+}
 
 
 def score_word(word):
+    """Calculate the scrabble score for a string."""
     score = 0
     for letter in word:
         score += letter_value.get(letter, 0)
@@ -25,12 +27,16 @@ def score_word(word):
 
 
 def load_lexicon_file(filepath):
+    """Open and read lexicon word list from supplied file path."""
     with open(filepath) as fileobj:
         return read_words(fileobj)
 
 
 def read_words(fileobj):
-    # this felt a little too involved for a single comprehension
+    """
+    Read file-like object, tokenizing words on line boundaries.
+       Blank lines and lines beginning with '#' are discarded.
+    """
     words = []
     for line in fileobj:
         line = line.strip()
