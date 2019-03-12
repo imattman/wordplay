@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import os
 import pathlib
 import wordplay
@@ -20,8 +20,13 @@ def hello():
                            missing=['cray cray', 'woozle', 'nerfherder'])
 
 
+@app.route("/api/v1/score")
+def score_letters_query():
+    return score_letters(request.args.get('l'))
+
+
 @app.route("/api/v1/score/<letters>")
-def score_word(letters):
+def score_letters(letters):
     letters = letters.strip().lower()
     score = wordplay.score_word(letters)
     result = {'letters': sorted(list(letters)),

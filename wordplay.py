@@ -53,14 +53,19 @@ class Lexicon:
         self._words = words
         self._scores = {w: (score_word(w), w) for w in words}
 
+    def get_word(self, word):
+        return self._scores.get(word, None)
+
     def __len__(self):
         return len(self._words)
 
     def __iter__(self):
+        # print("iterating over entire lexicon")
         return self._words.__iter__()
 
-    def get_word(self, word):
-        return self._scores.get(word, None)
+    def __contains__(self, item):
+        # print("checking membership of word", item)
+        return item in self._scores
 
     def __getitem__(self, word):
         return self.get_word(word)
