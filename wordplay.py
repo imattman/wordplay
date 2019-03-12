@@ -35,7 +35,7 @@ def load_lexicon_file(filepath):
 def read_words(fileobj):
     """
     Read file-like object, tokenizing words on line boundaries.
-       Blank lines and lines beginning with '#' are discarded.
+    Blank lines and lines beginning with '#' are discarded.
     """
     words = []
     for line in fileobj:
@@ -45,3 +45,22 @@ def read_words(fileobj):
         words.append(line.lower())
 
     return words
+
+
+class Lexicon:
+
+    def __init__(self, words):
+        self._words = words
+        self._scores = {w: (score_word(w), w) for w in words}
+
+    def __len__(self):
+        return len(self._words)
+
+    def __iter__(self):
+        return self._words.__iter__()
+
+    def get_word(self, word):
+        return self._scores.get(word, None)
+
+    def __getitem__(self, word):
+        return self.get_word(word)
