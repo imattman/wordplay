@@ -1,0 +1,31 @@
+<html>
+<head><title>Congratulations!  Flask is running</title></head>
+<body>
+<h1>Flask is running!</h1>
+
+<div>
+<p>Test some words in the lexicon:</p>
+    <ul>
+        {% for word in words %}
+        <li><a href="/api/v1/words/{{ word }}">{{ word }}</a></li>
+        {% endfor %}
+    </ul>
+    Some that are not:
+    <ul>
+        {% for word in missing %}
+        <li><a href="/api/v1/words/{{ word }}">{{ word }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div>
+    <p>Try scoring some random letters:</p>
+    <ul>
+        {% for group in letters %}
+        <li><a href="/api/v1/score/{{ group }}">&quot;{{ group }}&quot;</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
