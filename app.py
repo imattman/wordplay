@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
 from flask import Flask, jsonify, render_template, request
-import os
 import pathlib
 import wordplay
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-word_file = pathlib.Path(dir_path) / 'sowpods.txt'
+word_file = pathlib.Path(__file__).parent / 'sowpods.txt'
+print("loading word_file:", word_file)
 word_list = wordplay.load_lexicon_file(word_file)
 lexicon = wordplay.Lexicon(word_list)
 app = Flask(__name__)
